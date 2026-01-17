@@ -1,5 +1,6 @@
 .env
 *.local
+config.local.sh
 
 # IDE and Editor
 .vscode/

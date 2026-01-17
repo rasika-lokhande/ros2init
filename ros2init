@@ -1,17 +1,31 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+#SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+
 
 # ==================== CONFIGURATION ====================
-source $SCRIPT_DIR/config.sh
+if [ -f "$SCRIPT_DIR/config.local.sh" ]; then
+    source "$SCRIPT_DIR/config.local.sh"
+else
+    echo "❌ ERROR: config.local.sh not found"
+    echo ""
+    echo "Please run the installer first:"
+    echo "  cd $SCRIPT_DIR"
+    echo "  bash install.sh"
+    exit 1
+fi
+
+
+source $SCRIPT_DIR/lib/init.sh "$@" || exit 1
 
 # ==================== CREATE FOLDERS ====================
 mkdir -p $PROJECT_PATH
 mkdir -p $PROJECT_PATH/src
 echo "✓ Project folders created"
 
-# ==================== CREATE ROS ENV SCRIPT ====================
-source $SCRIPT_DIR/env_setup.sh
+# ==================== CREATE ROS ENV ALIAS SCRIPT ====================
+source $SCRIPT_DIR/lib/alias_setup.sh
 
 
 # ==================== BUILD ====================
@@ -20,14 +34,14 @@ colcon build
 echo "✓ Workspace built"
 
 # ==================== CREATE ROS PACKAGE ====================
-source $SCRIPT_DIR/pkg_setup.sh
+source $SCRIPT_DIR/lib/pkg_setup.sh
 
 
 # ==================== ADD TEMPLATES ====================
-source $SCRIPT_DIR/template_setup.sh
+source $SCRIPT_DIR/lib/template_setup.sh
 
 # ==================== GIT SETUP ====================================
-source $SCRIPT_DIR/git_setup.sh
+source $SCRIPT_DIR/lib/git_setup.sh
 
 
 # ==================== FINAL STEPS ====================

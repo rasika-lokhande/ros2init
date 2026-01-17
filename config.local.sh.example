@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PARENT_DIR_PATH="path/to/parent/directory"
+ROS_VERSION="jazzy"
+PYTHON_VERSION="3.12.3"
+GIT_USERNAME=""

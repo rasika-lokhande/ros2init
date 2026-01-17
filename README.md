@@ -11,7 +11,7 @@ A command-line tool to streamline ROS2 project initialization and setup.
 - **Workspace Setup**: Creates a ROS2 workspace with a best-practice folder structure
 - **Shell Aliases**: Automatically adds project-specific aliases for quick sourcing of `setup.bash`
 - **GitHub Integration**: Initializes a private GitHub repository for immediate version control
-- **Template Library**: Includes ready-to-use templates for nodes, URDF files, and launch files
+- **Template Library**: Includes ready-to-use templates for nodes, URDF files, and launch files (ongoing)
 
 ## Prerequisites
 
@@ -21,37 +21,49 @@ A command-line tool to streamline ROS2 project initialization and setup.
 - Bash shell
 
 ## Installation
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/ros2init.git
-cd ros2init
 
-# Make the script executable
-chmod +x run.sh
+The installer will:
+- Make `ros2init` executable
+- Create `config.local.sh` from the example template
+- Add `ros2init` to your PATH
+
+
+```bash
+git clone https://github.com/rasika-lokhande/ros2init.git
+cd ros2init
+bash install.sh
 ```
+
 
 ## Configuration
 
-Before first use, edit `config.sh` to set your preferences:
+Before first use, edit `config.local.sh` to set your preferences:
 ```bash
-# Open config.sh in your preferred editor
-nano config.sh
+# Open config.local.sh in your preferred editor
+nano config.local.sh
 ```
 
 Configure variables such as:
-- GitHub username/token
+- GitHub username
 - Default workspace paths
-- Preferred folder structure
-- Template locations
+- ROS2 version
+- Python version
 
 ## Usage
+
+Optional: Configure variables for the project
 ```bash
-source run.sh <project_name>
+cd ros2init
+nano config.local.sh
+```
+
+```bash
+ros2init <project_name>
 ```
 
 **Example:**
 ```bash
-source run.sh my_robot_project
+ros2init my_robot_project
 ```
 
 This will:
@@ -65,7 +77,7 @@ This will:
 
 After initialization, you can quickly source your project's setup file:
 ```bash
-my_robot_project  # Sources ~/ros2_ws/my_robot_project/install/setup.bash
+my_robot_project  # Sources my_robot_project/install/setup.bash
 ```
 
 
