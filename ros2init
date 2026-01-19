@@ -24,8 +24,14 @@ mkdir -p $PROJECT_PATH
 mkdir -p $PROJECT_PATH/src
 echo "✓ Project folders created"
 
+# ==================== CREATE PYTHON VIRTUAL ENVIRONMENT =======
+source $SCRIPT_DIR/lib/venv_setup.sh
+
 # ==================== CREATE ROS ENV ALIAS SCRIPT ====================
 source $SCRIPT_DIR/lib/alias_setup.sh
+
+
+
 
 
 # ==================== BUILD ====================
@@ -35,6 +41,9 @@ echo "✓ Workspace built"
 
 # ==================== CREATE ROS PACKAGE ====================
 source $SCRIPT_DIR/lib/pkg_setup.sh
+
+
+
 
 
 # ==================== ADD TEMPLATES ====================
