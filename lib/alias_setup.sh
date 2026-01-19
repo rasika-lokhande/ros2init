@@ -19,9 +19,6 @@ else
     echo "⚠ Workspace not built yet. Run 'colcon build' first."
 fi
 
-# Source python virtual environment
-source .venv/bin/activate
-
 # Show environment info
 echo "ROS Distro: \$ROS_DISTRO"
 echo "Current Directory: \$(pwd)"
